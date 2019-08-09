@@ -434,7 +434,13 @@
     _dropper,
     _files = [],
     _list = $('<ul class="list"/>'),
-    _path = window.location.pathname,
+    _path = function (){
+	    var meta_root = $('meta[name=webdav-root]');
+	    if (meta_root.length == 1){
+		return meta_root.attr("content");
+	    }
+	    return window.location.pathname;
+    }(),
 
     // exposed API
     WebDAV = {
